@@ -21,7 +21,7 @@ Fields
               <div class="card-header">
                 <h3 class="card-title">Form Inputs  List</h3>
                 <div class="card-tools">
-                	<form action="{{url('/search_blogslist')}}" method="POST" class="listing form-common d-flex" name="form-common">
+                	<form action="{{url('/list-inputs')}}" method="POST" class="listing form-common d-flex" name="form-common">
                   	@csrf
                 	<div class="input-group input-group-sm mr-2" style="width: 150px;">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">

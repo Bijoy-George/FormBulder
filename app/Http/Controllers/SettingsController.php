@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\FormField;
+use Auth;
 
 class SettingsController extends Controller
 {
@@ -17,6 +19,14 @@ class SettingsController extends Controller
 
     }
 
+    public function listInput(Request $request)
+    {
+        $results = FormField::paginate();
+        $html = view('settings.list_view')->with(compact('results'))->render();
+        $result_arr=array('success' => true,'html' => $html);
+        return json_encode($result_arr);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +34,7 @@ class SettingsController extends Controller
      */
     public function create()
     {
-        //
+        return view('settings.create');
     }
 
     /**
@@ -35,7 +45,27 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'label'      => 'required',
+            'field_type'      => 'required'
+        ]);
+        $fieldName=str_replace(' ', '_', strtolower(request('label')));
+        FormField::updateOrCreate([
+            'id' => $request->id,
+        ],
+        [
+            'field_name' => $fieldName,
+            'label' => $request->label,
+            'field_type' => $request->field_type,
+            'status' => config('constant.ACTIVE'),
+            'created_by' => Auth::user()->id
+        ]);
+
+            $result_arr=array('reset'=>true,'success' => true,'status' => 'success','message' => 'Saved successfully', 'redirect_url' => url('settings'));
+
+            return $result_arr;
+
+
     }
 
     /**
@@ -57,7 +87,8 @@ class SettingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $formField = FormField::find($id);
+        return view('settings.create',compact('formField'));
     }
 
     /**
@@ -80,6 +111,14 @@ class SettingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = formField::find($id);
+        if($data)
+        {
+            $data->delete();
+            $result_arr=array('success' => true,'message' => 'Deleted Successfully','refresh' =>true);
+
+            return $result_arr;
+        }
+        
     }
 }

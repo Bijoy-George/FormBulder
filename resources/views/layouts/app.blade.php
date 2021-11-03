@@ -58,7 +58,7 @@
       <div class="modal-content">
         <div class="modal-body">
           <div class="message"></div>
-          <p id="delete_msg">Are you sure want to Deactivate ?</p> 
+          <p id="delete_msg">Are you sure want to Delete ?</p> 
           
         </div>
         <div class="modal-footer">

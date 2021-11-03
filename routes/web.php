@@ -22,5 +22,6 @@ Route::get('/', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('settings','App\Http\Controllers\SettingsController');
+Route::post('list-inputs','App\Http\Controllers\SettingsController@listInput');
 
 require __DIR__.'/auth.php';
