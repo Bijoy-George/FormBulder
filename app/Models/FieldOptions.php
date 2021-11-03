@@ -7,13 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes; 
 
 
-class FormField extends Model
+class FieldOptions extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
-    public function getOptions()
-	{
-		return $this->hasMany(FieldOptions::class, 'field_id', 'id')->where('status',config('constant.ACTIVE'));
-	}
+    
+
 }

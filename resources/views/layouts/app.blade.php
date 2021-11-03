@@ -5,6 +5,7 @@
   <link rel="icon" href="/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <title>FormBuilder</title>
 
@@ -52,7 +53,7 @@
 <!-- Deletion modal start -->
     <div class="modal fade" id="deleteRecord" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
   <form role="form" method="POST" class="form-common" name="deletionFrom" action="#">
-    @method('DELETE')
+    <!-- @method('DELETE') -->
     @csrf
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -101,6 +102,8 @@
     </div>
   </form>
 </div>
+<input type="hidden" name="base_url" id="base_url" value="{{url('/')}}">
+
 <!-- Activation modal end -->
 <!-- Image Modal -->
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
@@ -145,54 +148,6 @@
 <!-- AdminLTE -->
 <script src="{{ asset('js/adminlte.js') }}"></script>
 <script src="https://cdn.tiny.cloud/1/7qw8e3jtis79nkjopxtufzt9r6sou2krbl5l3cy68od31j37/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-  tinymce.init({
-    selector: '.tinymce',
-    plugins: 'image imagetools code',
-    menubar: 'insert',
-    automatic_uploads: true,
-    file_picker_types: 'image',
-    height: '500',
-    file_picker_callback: function (cb, value, meta) {
-      var input = document.createElement('input');
-      input.setAttribute('type', 'file');
-      input.setAttribute('accept', 'image/*');
-
-      /*
-        Note: In modern browsers input[type="file"] is functional without
-        even adding it to the DOM, but that might not be the case in some older
-        or quirky browsers like IE, so you might want to add it to the DOM
-        just in case, and visually hide it. And do not forget do remove it
-        once you do not need it anymore.
-      */
-
-      input.onchange = function () {
-        var file = this.files[0];
-
-        var reader = new FileReader();
-        reader.onload = function () {
-          /*
-            Note: Now we need to register the blob in TinyMCEs image blob
-            registry. In the next release this part hopefully won't be
-            necessary, as we are looking to handle it internally.
-          */
-          var id = 'blobid' + (new Date()).getTime();
-          var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
-          var base64 = reader.result.split(',')[1];
-          var blobInfo = blobCache.create(id, file, base64);
-          blobCache.add(blobInfo);
-
-          /* call the callback and populate the Title field with the file name */
-          cb(blobInfo.blobUri(), { title: file.name });
-        };
-        reader.readAsDataURL(file);
-      };
-
-      input.click();
-    },
-  });
-</script>
-
 <!-- OPTIONAL SCRIPTS -->
 <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('js/demo.js') }}"></script>

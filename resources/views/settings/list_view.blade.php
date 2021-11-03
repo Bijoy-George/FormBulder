@@ -17,7 +17,6 @@
                       <td>{{ $data->field_name }}</td>
                       <td>{{ config('constant.Field_type')[$data->field_type ?? ''] }}</td>
                       <td class="text-right"><div class="btn-group">
-                        <!-- <button type="button" class="btn btn-default"><i class="far fa-eye"></i></button> -->
                         <a href="{{ url('settings/'.$data->id.'/edit') }}" class="btn btn-default"><i class="fas fa-pencil-alt"></i></a>
                               <a href="javascript:void(0)" onclick="deletePop('settings/' + {{ $data->id }})" class="btn btn-default"> <i class="far fa-trash-alt"></i></a>
         

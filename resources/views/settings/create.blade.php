@@ -32,7 +32,7 @@
         <input type="hidden" class="callback" value="form_basic_redirect">
           <input type="hidden" class="arg" value="1">
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Input Label</label>
                       {{ Form::text('label', null, array('class' => 'form-control', 'placeholder' => 'Enter Label Name')) }}
@@ -40,13 +40,21 @@
                     </div>
                   </div> 
                   <?php $field_type = config('constant.Field_type');?>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                    <div class="form-group">
                       <label for="exampleInputEmail1">Field Type</label>
-                      {{ Form::select('field_type', $field_type, null, array('class' => 'form-control', 'placeholder' => 'Select Type')) }}
+                      {{ Form::select('field_type', $field_type, null, array('class' => 'form-control', 'id' => 'field_type', 'placeholder' => 'Select Type')) }}
                       <span class="error" id ="field_type_err"></span>
                     </div>
+                    @if(isset($formField) && $formField->field_type == 3)
+                    <div class="form-group" id="options">
+                    <a  target="_blank" href="{{ url('add-field-options') }}" class="btn btn-block btn-default"><i class="fas fa-plus"></i> Add options</a>
+
+                    </div>
+                    @endif
                   </div>
+
+                   
                   
                 
                 </div>

@@ -23,5 +23,10 @@ Route::get('/', function () {
 
 Route::resource('settings','App\Http\Controllers\SettingsController');
 Route::post('list-inputs','App\Http\Controllers\SettingsController@listInput');
+Route::get('add-field-options','App\Http\Controllers\SettingsController@addOptions');
+Route::post('/get_all_options','App\Http\Controllers\SettingsController@getAllOptions'); 
+Route::post('/save_options','App\Http\Controllers\SettingsController@saveOptions')->name('save_options'); 
+Route::get('/view-form','App\Http\Controllers\SettingsController@viewRegistrationForm'); 
+
 
 require __DIR__.'/auth.php';

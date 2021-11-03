@@ -35,6 +35,14 @@
                   </p>
                 </a>
               </li>
+          <li class="nav-item">
+                <a href="{{ url('/view-form') }}" class="nav-link @if(strpos(Route::current()->uri, 'view-form') === 0) active @endif">
+                <i class="far fa-file-alt"></i>
+                  <p>
+                    View Form
+                  </p>
+                </a>
+              </li>
 
           
         </ul>
