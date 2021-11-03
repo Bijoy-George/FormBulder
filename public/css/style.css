@@ -1,0 +1,19 @@
+.tab-pane {
+	padding: 30px;
+}
+span.error {
+	color: red;
+}
+nav[role="navigation"] .items-center svg{
+	width: 21px !important;
+}
+nav[role="navigation"] {
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+nav[role="navigation"] > div:first-child{
+	display: none;
+}
+nav[role="navigation"] a{
+	color: #6a6ac2 !important;
+}
