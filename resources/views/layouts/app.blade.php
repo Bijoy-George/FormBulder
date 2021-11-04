@@ -52,7 +52,7 @@
     @yield('content')
 <!-- Deletion modal start -->
     <div class="modal fade" id="deleteRecord" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form role="form" method="POST" class="form-common" name="deletionFrom" action="#">
+  <form role="form" method="delete" class="form-common" name="deletionFrom" action="#">
     <!-- @method('DELETE') -->
     @csrf
     <div class="modal-dialog modal-dialog-centered">

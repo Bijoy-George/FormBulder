@@ -18,6 +18,7 @@
         <input type="hidden" class="callback" value="form_basic_redirect">
           <input type="hidden" class="arg" value="1">
           <div class="row">
+          @if(count($formInput) > 0)
           @foreach($formInput as $value)
         @if($value->field_type ==1)
                   <div class="col-md-6">
@@ -54,6 +55,12 @@
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
+                @else
+                <div class="card-footer">
+                  No Inputs Found
+</div>
+                @endif
+
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
